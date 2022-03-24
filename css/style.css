@@ -58,10 +58,10 @@ body {
     height: 280px;
     overflow: hidden;
     border-radius: 50%;
-    box-shadow: 0 0 0 5px #fff,
+    box-shadow: -1px -1px 20px 0px #fff,
         0 0 2px #fff,
         13px 13px 20px #31313163,
-        -10px -10px 20px #e6f6ff;
+        5px 10px 20px #e6f6ff;
 }
 
 .imgMuic img {
@@ -168,7 +168,7 @@ body {
     border-radius: 50%;
     box-shadow: 
         0 0 2px #fff,
-        8px 8px 2px #ff5e66,
+        8px 8px 2px #141414,
         -3px -3px 15px #f0ecec ;
 }
 
@@ -185,7 +185,7 @@ body {
 .seta {
     box-shadow: 
     0 0 2px #fff,
-    8px 8px 2px #ff5e66,
+    0px 5px 0px #525151,
     -3px -3px 15px #f0ecec ;
     border-radius: 50%;
 }
@@ -279,7 +279,7 @@ body {
 @media screen and (max-width: 400px) {
 
     body {
-        background: linear-gradient(#9ce3ff 0%, #fd878d 90%);
+        background: linear-gradient(#686868 0%, #000000 90%);
         box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;
     }
 
