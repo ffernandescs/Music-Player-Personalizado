@@ -28,13 +28,18 @@ body {
     position: relative;
     overflow: hidden;
     border-radius:15px ;
-    background: linear-gradient(#9ce3ff 0%, #fd878d 90%);
+    background-color: #4C336C;
     box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;
 }
 
-.container i {
-    cursor: pointer;
+.containerCor1{
+    border-radius:15px ;
+    background: #000000;
+    box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;
+
 }
+
+
 
 .topoTela {
     display: flex;
@@ -45,6 +50,7 @@ body {
 .topoTela i {
     font-size: 30px;
     color: #eee;
+    cursor: pointer;
 }
 
 .topoTela span {
@@ -58,10 +64,6 @@ body {
     height: 280px;
     overflow: hidden;
     border-radius: 50%;
-    box-shadow: -1px -1px 20px 0px #fff,
-        0 0 2px #fff,
-        13px 13px 20px #31313163,
-        5px 10px 20px #e6f6ff;
 }
 
 .imgMuic img {
@@ -72,7 +74,7 @@ body {
 
 .textFaixa {
     text-align: center;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .textFaixa p {
@@ -93,9 +95,10 @@ body {
 .timeProgress {
     width: 100%;
     height: 5px;
-    background: #f0f0f081;
+    background: #F1EFEF;
     border-radius: 50px;
     cursor: pointer;
+
 }
 
 .barra {
@@ -103,14 +106,15 @@ body {
     height: inherit;
     border-radius: inherit;
     position: relative;
-    background-color: #eee;
+    background-color: #EF9F42;
+
 }
 
 .barra::before {
     content: '';
     position: absolute;
-    height: 15px;
-    width: 15px;
+    height: 13px;
+    width: 13px;
     border-radius: 50%;
     top: 50%;
     right: -5px;
@@ -142,55 +146,33 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 50px 0 5px 0;
+    margin: 40px 0 5px 0;
 }
+
+
 
 .controlePlayer i {
-    font-size: 28px;
-    user-select: none;
-    background: #eee;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.controlePlayer i:nth-child(2), .controlePlayer i:nth-child(4) {
     font-size: 40px;
+    color: #EFEFEE;
+    cursor: pointer;
+
 }
 
 .playPause {
-    width: 54px;
-    height: 54px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 
-        0 0 2px #fff,
-        8px 8px 2px #141414,
-        -3px -3px 15px #f0ecec ;
 }
 
-.playPause::before{
-    position: absolute;
-    content: '';
-    width: 43px;
-    height: 43px;
-    background: transparent;
-    border: 3px solid #eee;
-    border-radius: inherit;
+.playPause i {
+    color: #EFEFEE;
+    font-size: 60px;
 }
 
-.seta {
-    box-shadow: 
-    0 0 2px #fff,
-    0px 5px 0px #525151,
-    -3px -3px 15px #f0ecec ;
-    border-radius: 50%;
-}
 
 #pause {
+    cursor: pointer;
     display: none;
 }
 
@@ -276,18 +258,87 @@ body {
     color: #0e9fff;
 }
 
+.textIcoList i {
+    font-size: 35px;
+}
+
+.textIcoList .close {
+    cursor: pointer;
+}
+
+.textIcoList p {
+    font-size: 18px;
+}
+
+.buttonColorBackground {
+    position: absolute;
+    top: -55%;
+    right: 0;
+    padding: 20px;
+    border-radius: 15px;
+    width: 70%;
+    height: 80px;
+    background-color: #eee;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 2;
+
+}
+
+.buttonColorBackground i {
+    position: absolute;
+    font-size: 40px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.buttonColor1, .buttonColor2, .buttonColor3, .buttonColor4 {
+    margin: 5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+.buttonColor1 {
+    background-color: #4C336C;
+}
+
+.buttonColor2 {
+    background-color: #0e9fff;
+}
+
+.buttonColor3 {
+    background: linear-gradient(#9ce3ff 0%, #fd878d 90%);
+}
+
+.buttonColor4 {
+    background-color: rgb(10, 8, 8);
+}
+
+.fechaMenu {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: -5555;
+}
+
+.closeMenu {
+    display: none;
+}
+
 @media screen and (max-width: 400px) {
 
     body {
-        background: linear-gradient(#686868 0%, #000000 90%);
-        box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;
+        background-color: #4C336C;
     }
 
     .container {
-        background: transparent;
-        box-shadow: 0px 0px 0px rgb(0,0,0,0.342) ;
-        border-radius:0px ;
-
+        border-radius:15px ;
+        background-color: #4C336C;
+        box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;
+    
     }
 }
 

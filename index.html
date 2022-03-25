@@ -12,7 +12,7 @@
 <body>  
   <div class="container">
     <div class="topoTela">
-      <i class="material-icons">favorite_border</i>
+      <i class="material-icons" onclick="mudarColor()">palette</i>
       <span>Now  Playing</span>
       <i class="material-icons">add</i>
     </div>
@@ -27,22 +27,23 @@
     <div class="timeProgress">
       
       <div class="barra">
-        <audio src="./assets/music/01.mp3" class="progress"></audio>
+        <audio src="" class="progress"></audio>
       </div>
       <div class="time">
         <span class="inicio">0:00</span>
         <span class="fim">0:00</span>
       </div>
 
-      <div class="controlePlayer">
-        <i class="material-icons">repeat</i>
-        <i class="material-icons seta prev" onclick="prevMusic()">fast_rewind</i>
-        <div class="playPause" onclick="playMusic()">
-          <i id="play" class="material-icons play">play_arrow</i>
-        </div>
-        <i class="material-icons seta next" onclick="nextMusic()">fast_forward</i>
-        <i class="material-icons btnList" onclick="clickList()">queue_music</i>
+      
+    </div>
+    <div class="controlePlayer">
+      <i class="material-icons">repeat</i>
+      <i class="material-icons" onclick="prevMusic()">fast_rewind</i>
+      <div class="playPause" onclick="playMusic()">
+        <i id="play" class="material-icons play">play_arrow</i>
       </div>
+      <i class="material-icons" onclick="nextMusic()">fast_forward</i>
+      <i class="material-icons" onclick="clickList()">queue_music</i>
     </div>
     <div class="listMusic">
       <div class="containerList">
@@ -51,7 +52,7 @@
           <p>Music List</p>
           <i class="material-icons close" onclick="closeList()">close</i>
         </div>
-        <ul>
+        <ul class="testeUl">
                     
         </ul>
         
@@ -59,7 +60,15 @@
           
       </div>
     </div>
+    <div class="buttonColorBackground">
+      <span class="buttonColor1" onclick="color1()"></span>
+      <span class="buttonColor2" onclick="color2()"></span>
+      <span class="buttonColor3" onclick="color3()"></span>
+      <span class="buttonColor4" onclick="color4()"></span>
+      <i class="material-icons" onclick="closeListColor()">close</i>
+    </div>
   </div>
+  <div class="fechaMenu" onclick="fecharMenuDvi()"></div>
   <script src="./js/musicList.js"></script>
   <script src="./js/script.js"></script>
 </body>
