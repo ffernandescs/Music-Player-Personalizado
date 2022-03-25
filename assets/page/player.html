@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f84144252b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <title>Projeto MusicPlayer</title>
+</head>
+<body>  
+  <div class="container">
+    <div class="containerSec">
+      <div class="topoTela">
+        <i class="material-icons" onclick="mudarColor()">palette</i>
+        <span>PlayList Banda Ellos</span>
+        <a class="material-icons logout" href="../../index.htm">logout</a> </i>
+      </div>
+      <div class="imgMuic">
+        <img src="../img/music-1.jpg" alt="">
+      </div>
+      <div class="textFaixa">
+        <p class="nameMusic">Malvadão</p>
+        <p class="nameArtista">Luka Bass</p>
+      </div>
+
+      <div class="timeProgress">
+        <div class="barra">
+          <audio src="" class="progress"></audio>
+        </div>            
+      </div>
+      <div class="time">
+        <span class="inicio">0:00</span>
+        <span class="fim">0:00</span>
+      </div>
+
+      <div class="controlePlayer">
+        <i class="material-icons repeat " title="PlayList Loop" onclick="repeatMusic()">repeat</i>
+        <i class="material-icons" onclick="prevMusic()">fast_rewind</i>
+        <div class="playPause" onclick="playMusic()">
+          <i id="play" class="material-icons play">play_arrow</i>
+        </div>
+        <i class="material-icons" onclick="nextMusic()">fast_forward</i>
+        <i class="material-icons" onclick="clickList()">queue_music</i>
+      </div>
+      <div class="listMusic">
+        <div class="containerList">
+          <div class="textIcoList">
+            <i id="musicListMenu" class="material-icons">queue_music</i>
+            <p>Music List</p>
+            <i class="material-icons close" onclick="closeList()">close</i>
+          </div>
+          <ul class="testeUl">
+                      
+          </ul>
+          
+
+            
+        </div>
+      </div>
+      <div class="buttonColorBackground">
+        <span class="buttonColor1" onclick="color1()"></span>
+        <span class="buttonColor2" onclick="color2()"></span>
+        <span class="buttonColor3" onclick="color3()"></span>
+        <span class="buttonColor4" onclick="color4()"></span>
+        <i class="material-icons" onclick="closeListColor()">close</i>
+      </div>
+    </div>
+  </div>
+  <div class="fechaMenu" onclick="fecharMenuDvi()"></div>
+  <script src="../../js/musicList.js"></script>
+  <script src="../../js/script.js"></script>
+</body>
+</html>

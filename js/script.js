@@ -7,14 +7,15 @@ let prevBtn = document.querySelector('prev');
 let nextBtn = document.querySelector('.next');
 
 let openCloseListColor = document.querySelector('.buttonColorBackground');
-let clickFora = document.querySelector('.container')
+let openCloseListColor2 = document.querySelector('.buttonColorBackground2');
+let container = document.querySelector('.container')
 let openCloseLista = document.querySelector('.listMusic')
 let barraTime = document.querySelector('.barra') 
 let barraProgress = document.querySelector('.timeProgress')
 let fecharMenu = document.querySelector('.fechaMenu');
-
-
-
+let repeatBtn = document.querySelector('.repeat')
+let containerSeconds = document.querySelector('.containerSec');
+let containerLogin = document.querySelector('.containerLogin');
 
 let indexMusic = 0
 
@@ -30,9 +31,7 @@ window.addEventListener('load', ()=> {
 function carregarIndex(numbIndex) {
     nameMusic.innerHTML = arrayFaixas[numbIndex].name;
     nameArtist.innerHTML = arrayFaixas[numbIndex].artista;
-    imgMusic.src = `assets/img/${arrayFaixas[numbIndex].img}.jpg`;
-    music.src = `assets/music/${arrayFaixas[numbIndex].src}.mp3`;
-
+    music.src = `/../assets/music/${arrayFaixas[numbIndex].src}.mp3`;
 }
 
 
@@ -42,17 +41,27 @@ function playMusic() {
        music.play();
        btnPlay.innerHTML = 'pause'
 
-
    } else {
        music.pause()
        btnPlay.innerHTML = 'play_arrow'
    }
 }
 
+function playMusicList() {
+
+    if(music.paused) {
+        music.play();
+        btnPlay.innerHTML = 'pause'
+    }
+ }
+
+
+
+
 function prevMusic() {
     indexMusic--;
     if(indexMusic < 0){
-        indexMusic = 5
+        indexMusic = 21
     }
     carregarIndex(indexMusic);
     if (music.paused) {
@@ -63,7 +72,7 @@ function prevMusic() {
 
 function nextMusic() {
     indexMusic++;
-    if(indexMusic > 5){
+    if(indexMusic > 21){
         indexMusic = 0
     }
     carregarIndex(indexMusic);
@@ -81,6 +90,7 @@ music.addEventListener('timeupdate', (e) => {
 
     let timeFinal = document.querySelector('.fim');
     let timeInitial = document.querySelector('.inicio'); 
+    let timeFinaList = document.querySelector('.timeTextTime')
 
     music.addEventListener('loadeddata', () => {
         let durationReal = music.duration;
@@ -89,53 +99,113 @@ music.addEventListener('timeupdate', (e) => {
         if(totalSeconds < 10) {
             totalSeconds = '0' + totalSeconds;
         }
-    
+        
         timeFinal.innerHTML = totalMin + ':' + totalSeconds;
     
     });
-    
         let minCurrent = Math.floor(durationAudio /60);
         let secCurrent = Math.floor(durationAudio % 60);
         if(secCurrent < 10) {
             secCurrent = '0' + secCurrent;
         }
-    
         timeInitial.innerHTML = minCurrent + ':' + secCurrent;
     });
 
 
-
-const ulTag = document.querySelector('.containerList ul');
-
-for (let i = 0; i < arrayFaixas.length; i++) {
-    let liTag = `<li class="numeroFaixa" onclick="playListFaixa()">
-                    <div class="text">
-                        <p class="">${arrayFaixas[i].name}</p>
-                        <p class="">${arrayFaixas[i].artista}</p>
-                    </div>
-                    <audio class="${arrayFaixas[i].src}" src="${arrayFaixas[i].src}" ></audio>
-                    <span class="timeTextTime">1:45</span>
-                </li>`
-ulTag.insertAdjacentHTML('beforeend', liTag);
-
-
-
-
-function campoTimeBarra(seconds) {
-    let timeMinuto = Math.floor(seconds / 60);
-    let timeSeconds = seconds % 60;
-    if(timeSeconds < 10) {
-        timeSeconds = '0' + timeSeconds;
+    barraProgress.addEventListener('click', (e)=>{
+        let widthProgress = barraProgress.clientWidth;
+        let offsetXClick = e.offsetX;
+        let durationAudio = music.duration;
+        
+        music.currentTime = (offsetXClick / widthProgress) * durationAudio;
+        playMusicList();
+    })  
+    
+    function repeatMusic() {
+        let mudarTextRepeat = repeatBtn.innerText;
+    
+        switch(mudarTextRepeat){
+            case 'repeat':
+                repeatBtn.innerText = 'repeat_one';
+                repeatBtn.setAttribute('title', 'Audio Looped')
+                break;
+            case 'repeat_one':
+                repeatBtn.innerText = 'shuffle';
+                repeatBtn.setAttribute('title', 'Playback shuffle')
+                break;
+            case 'shuffle':
+                repeatBtn.innerText = 'repeat';
+                repeatBtn.setAttribute('title', 'Playback Looped');
+                break;
     }
-    return timeMinuto + ':' + timeSeconds;
- }
+    };
 
+    music.addEventListener('ended', ()=>{
+        let mudarTextRepeat = repeatBtn.innerText;
+    
+        switch(mudarTextRepeat){
+            case 'repeat':
+                nextMusic();
+                break;
+            case 'repeat_one':
+                music.currentTime = 0;
+                carregarIndex(indexMusic);
+                playMusic();
+                break;
+            case 'shuffle':
+                let aleatorioIndex = Math.floor((Math.random()* arrayFaixas.length) + 1);
+                do{
+                    aleatorioIndex = Math.floor((Math.random()* arrayFaixas.length) + 1);
+                }while (indexMusic == aleatorioIndex); 
+                indexMusic = aleatorioIndex;
+                carregarIndex(indexMusic);
+                playMusic();
+                break;
+        }
+    })
 
+    const ulTag = document.querySelector('.containerList ul');
+
+    for (let i = 0; i<arrayFaixas.length; i++) {
+        ulTag.innerHTML += `<li class="numeroFaixa" onclick="playMusicList()">
+        <div class="text">
+            <p class="">${arrayFaixas[i].name}</p>
+            <p class="">${arrayFaixas[i].artista}</p>
+        </div>
+        <audio id="durationAudio" src="asstes/music/${arrayFaixas[i].src}" ></audio>
+        <span class="durationText">1:45</span>
+    </li>`
+
+    let textTimeList = document.querySelector('#durationAudio');
+    let audioTimeList = document.querySelector('.durationText')
+
+    
+    audioTimeList.addEventListener('loadeddata', ()=>{
+        let duration = audioTimeList.duration;
+        let totalMin = Math.floor(duration / 60);
+        let totalSec = Math.floor(duration % 60);
+        if(totalSec < 10){ 
+        totalSec = '0' + totalSec;
+        };
+        textTimeList.innerText = totalMin + ':' + totalSec
+  });
+                                                        
 }
+
+
+
+
 
 function fecharMenuDvi() {
     closeList();
     closeListColor();
+   fecharMenu.style = 
+   'z-index: -5555;'
+}
+
+function fecharMenuDvi2() {
+    closeListColor();
+    closeList();
    fecharMenu.style = 
    'z-index: -5555;'
 }
@@ -153,7 +223,8 @@ function clickList () {
  }
 
 function closeListColor() {
-        openCloseListColor.style.top = '-55%'     
+        openCloseListColor.style.top = '-55%'
+
     
 }
 
@@ -164,22 +235,31 @@ function mudarColor () {
 }
 
 function color1() {
-    clickFora.style = 
+    container.style = 
         'background-color: #4C336C;'
         'box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;'
 }
 function color2() {
-    clickFora.style = 
+    container.style = 
     'background-color: #0e9fff;' +
     'box-shadow: 0px 6px 15px rgb(0,0,0,0.342);'
 }
 function color3() {
-    clickFora.style = 
+    container.style = 
         'background: linear-gradient(#9ce3ff 0%, #fd878d 90%);' +
         'box-shadow: 0px 6px 15px rgb(0,0,0,0.342);'
 }
 function color4() {
-    clickFora.style = 
+    container.style = 
         'background-color: #000;' +
         'box-shadow: 0px 6px 15px rgb(0,0,0,0.342);'
+}
+
+
+
+
+function logarPage()  {
+    containerLogin.style.display = 'none'
+    containerSeconds.style.display ='block'
+    document.querySelector('.topoTela i').style.display = block
 }
