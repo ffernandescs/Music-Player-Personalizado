@@ -1,397 +1,397 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "poppins", sans-serif;
-}
-
-*::before, *::after {
-    padding: 0;
-    margin: 0;
-}
-
 body {
+    margin: 0;
+    padding: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    width: 100%;
-    background: rgb(207, 207, 207);
+    font-family: "poppins", Arial, Helvetica, sans-serif ;
+    background-color: #495371;
+    
 }
 
 .container {
-    width: 350px;
-    height: 650px;
-    padding: 25px 30px;
+    overflow: hidden;
     position: relative;
-    overflow: hidden;
-    border-radius:15px ;
-    background-color: #4C336C;
-    box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;
-}
-
-.containerCor1{
-    border-radius:15px ;
-    background: #000000;
-    box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;
-
-}
-
-
-
-.topoTela {
+    width: 300px;
+    height: 600px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
+    border-radius: 25px;
+    padding: 60px 20px 20px 20px;
+    color: #dee2e6;
+    box-shadow: 5px 0px 30px 5px #333;
+    background-image: linear-gradient(180deg, #5c3f64 0, #4a2f5e 25%, #321f59 50%, #0a1254 75%, #000550 100%);
+}
+.heead h1 {
+    position: absolute;
+    font-size: 22px;
+    margin-bottom: 40px;
+    top: 5px;
+    left: 100px;
 }
 
-.topoTela i, .topoTela a {
-    font-size: 30px;
-    color: #eee;
-    cursor: pointer;
-}
-
-.topoTela span {
-    font-size: 18px;
-    color: #eee;
-}
-
-.imgMuic {
-    margin-top: 25px;
-    width: 100%;
-    height: 280px;
+.imgTrack{
+    width: 300px;
+    height: 300px;
     overflow: hidden;
-    border-radius: 50%;
-    
+    border-radius: 10px;
 }
 
-.imgMuic img {
+.imgTrack img {
     width: 100%;
     height: 100%;
-    
 }
 
-.textFaixa {
+.textTrack {
     text-align: center;
-    margin: 20px 0;
 }
 
-.textFaixa p {
-    color: #eee;
-
+.textTrack h3{
+    font-size: 18px;
+    margin: 0;
+    padding: 20px 20px 0px 20px;
+}
+.textTrack p{
+    margin: 0;
+    font-size: 14px;
+    padding-bottom: 30px;
 }
 
-.textFaixa .nameMusic {
-    font-size: 21px;
-}
-
-.nameArtista {
-    font-size: 15px;
-    opacity: 0.9;
-    line-height: 35px;
-}
-
-.timeProgress {
+.barSlide {
     width: 100%;
-    height: 5px;
-    background: #F1EFEF;
-    border-radius: 50px;
-    cursor: pointer;
-
-}
-
-.barra {
-    width: 0%;
-    height: inherit;
-    border-radius: inherit;
-    position: relative;
-    background-color: #EF9F42;
-
-}
-
-.barra::before {
-    content: '';
-    position: absolute;
-    height: 13px;
-    width: 13px;
-    border-radius: 50%;
-    top: 50%;
-    right: -5px;
-    z-index: 2;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-50%);
-    background: inherit;
-    transition: opacity 0.2s ease;
-}
-
-.timeProgress:hover .barra::before {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.time {
-    display: flex;
-    justify-content: space-between;
-}
-
-.time span {
-    margin-top: 3px;
-    font-size: 13px;
-    color: #eee;
-}
-
-.controlePlayer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 40px 0 5px 0;
-}
-
-
-
-.controlePlayer i {
-    font-size: 40px;
-    color: #EFEFEE;
-    cursor: pointer;
-
-}
-
-.playPause {
+    height: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 }
 
-.playPause i {
-    color: #EFEFEE;
-    font-size: 60px;
-}
-
-
-#pause {
-    cursor: pointer;
-    display: none;
-}
-
-.listMusic {
-    position: absolute;
+.slide {
     width: 100%;
-    padding: 15px 30px;
-    z-index: 2;
-    left: 0;
-    bottom: -55%;
-    opacity: 0;
-    box-shadow: 0px -5px 10px rgb(0,0,0,0.1);
-    background: linear-gradient(#9ce3ff 0%, #fd878d 90%);
-    border-radius: 15px;
-    background-blend-mode: screen ;
-    transition: all 0.15s ease-in-out;
-}
-
-.listMusic.show {
-    bottom: 0;
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.listMusic ul {
-    max-height: 260px;
-    margin-top: 20px 0;
-    overflow: auto;
-}
-
-.containerList {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    color: #515c6f;
-}
-
-.textIcoList {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.listMusic ul li {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    color: #000000;
-    padding-bottom: 10px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #eee;
-}
-
-.containerList ul li:last-child{
-    border-bottom: 0px;
-}
-
-.containerList ul li .text p:nth-child(1){
-    font-size: 16px;
-}
-
-.containerList ul li .text p:nth-child(2){
-    font-size: 14px;
-    opacity: 0.6;
-}
-
-.text p {
-    margin: 0;
-}
-
-.containerList ul li span {
-    font-size: 17px;
-}
-
-.listMusic ul::-webkit-scrollbar{
-    width: 0;
-}
-
-.listMusic ul li:hover {
-    color: #0e9fff;
-}
-
-.textIcoList i {
-    font-size: 35px;
-}
-
-.textIcoList .close {
-    cursor: pointer;
-}
-
-.textIcoList p {
-    font-size: 18px;
-}
-
-.buttonColorBackground, .buttonColorBackground2 {
-    position: absolute;
-    top: -55%;
-    right: 0;
-    padding: 20px;
-    border-radius: 15px;
-    width: 70%;
-    height: 80px;
     background-color: #eee;
+    border-radius: 20px;
+    height: 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    z-index: 2;
 }
 
-.buttonColorBackground i {
-    position: absolute;
-    font-size: 40px;
-    right: 20px;
-    cursor: pointer;
+.bar {
+    width: 0%;
+    height: 100%;
+    background-image: linear-gradient(
+    to right,
+    #e9c8c8, #b37a12);
 }
 
-.buttonColor1, .buttonColor2, .buttonColor3, .buttonColor4 {
-    margin: 5px;
-    height: 20px;
-    width: 20px;
+.ponto {
     border-radius: 50%;
+    background-image: linear-gradient(
+    to right,
+    #d68214, #b37a12);
+    width: 15px;
+    height: 15px;
+    margin-left: -3px;
+}
+
+input {
+    background-color: #fff;
+    width: 100%;
+    height: 10px;
+    margin: 0;
+}
+
+input::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    outline: none;
+}
+
+.timeTrack {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.controles {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#playPause {
+    font-size: 60px;
+    color: #00bbf9;
+    cursor: pointer;
+    transform: scale(1);
+    transition: 0.2s ease-in-out;
+
+}
+
+#playPause:hover {
+    transform: scale(1.2);
+}
+
+.controles span{
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.listTrackMusic {
+    position: absolute;
+    width: 300px;
+    box-shadow: 5px 0px 30px 5px #333;
+    background-image: linear-gradient(180deg, #5c3f64 0, #4a2f5e 25%, #321f59 50%, #0a1254 75%, #000550 100%);
+    padding: 10px 20px 90px 20px;
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    left: 0;
+    bottom: -55%;
+    height: 260px;
+    z-index: 5;
+    transition: all 0.15s ease-in-out;
+}
+
+.show {
+    opacity: 1;
+    bottom: 0;
+    pointer-events: auto;
+    display: block;
+}
+
+ul {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+.listTrackMusic ul::-webkit-scrollbar{
+    width: 0;
+}
+
+.contListMusic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.contListMusic span {
+    font-size: 35px;
+}
+
+.contListMusic p {
+    margin: 0;
+    font-size: 20px;
+}
+
+li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+li:hover{
+    background-color: rgba(51, 51, 51, 0.397);
+    border-radius: 10px;
+    border-bottom-left-radius:0 ;
+    border-bottom-right-radius:0 ;
+}
+
+ul li.playing{
+    font-weight: bold;
+    background-color: rgba(134, 134, 134, 0.253);
+    border-radius: 10px;
+    border-bottom-left-radius:0 ;
+    border-bottom-right-radius:0 ;
+    pointer-events: none;
+    color: rgb(255, 255, 255);
+  }
+
+.textInfo {
+    width: 320px;
+}
+
+.textInfo p {
+    margin: 5px;
+    
+}
+
+.textArtistMusic {
+    font-size: 14px;
+    padding-bottom: 5px;
+    font-weight: lighter;
+}
+
+.textPlay{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 80px;
+}
+
+#listTrack2 {
     cursor: pointer;
 
 }
-.buttonColor1 {
-    background-color: #4C336C;
+
+.textPlay span {
+    
+    padding: 5px;
 }
 
-.buttonColor2 {
-    background-color: #0e9fff;
+#close {
+    cursor: pointer;
 }
 
-.buttonColor3 {
-    background: linear-gradient(#9ce3ff 0%, #fd878d 90%);
-}
-
-.buttonColor4 {
-    background-color: rgb(10, 8, 8);
-}
-
-.fechaMenu {
+.fecharMenu {
     position: absolute;
     width: 100%;
     height: 100vh;
-    z-index: -5555;
+    z-index: -155;
 }
 
+.altColorBack {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    right: 0;
+    margin: 20px;
+}
 
-/*Campo de Login */
+.altColorBack span{
+    font-size: 30px;
+    cursor: pointer;
+}
 
-.imgLogin {
-    margin-top: 25px;
-    width: 100%;
-    height: 280px;
-    overflow: hidden;
+.contCores {
+    position: absolute;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    padding-right: 10px;
+    top: -5px;
+    margin: 20px;
+    right: -100%;
+    width: 150px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    z-index: 4;
+    transition: all 0.15s ease-in-out;
+}
+
+.btnColor {
+    width: 20px;
+    height: 20px;
+    background-image: radial-gradient(circle at 50% -20.71%, #de9c2c 0, #e5922a 8.33%, #ea852b 16.67%, #ee772d 25%, #f16731 33.33%, #f35436 41.67%, #f23c3c 50%, #f01843 58.33%, #ed004c 66.67%, #e90057 75%, #e30064 83.33%, #db0071 91.67%, #d10080 100%);    
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.btnColorOrig {
+    width: 20px;
+    height: 20px;
+    background-image: linear-gradient(180deg, #5c3f64 0, #4a2f5e 25%, #321f59 50%, #0a1254 75%, #000550 100%);
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#btnClose {
+    color: #000;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.volume {
+    width: 100%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding-left: 10px;
+  
+}
+
+.volume span {
+    text-align: start;
+    font-size: 20px;
+    padding-left: 10px;
+    cursor: pointer;
+    width: 25px;
+    
 
 }
 
-.imgLogin img {
+.volume input {
+    -webkit-appearance: none;
+    outline: none;
+    height: 3px;
     width: 150px;
-    height: 150px;
+    border-radius: 20px;
+    position: absolute;
+    left: 55px;
+    bottom: 103px;
+    display: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#onMobile {
+    display: none;
+  
+}
+
+.volume input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    outline: none;
+    height: 15px;
+    width: 15px;
+    background-image: radial-gradient(circle at 50% -20.71%, #acabaa 0, #b1a89d 8.33%, #d1813b 16.67%);    
     border-radius: 50%;
 }
 
-.cpLogin {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+#off {
+    display: none;
 }
 
-.cpLogin input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    padding-left: 10px;
-    border: none;
-    margin-bottom: 20px;
-    outline: 0;
-    color: rgb(0, 0, 0);
-    font-size: 18px;
-    background-color: #eee;
-}
-
-.cpLogin button {
-    width: 70%;
-    height: 50px;
-    border-radius: 10px;
-    background-color: #3e295a;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.cpLogin button a {
-    color: #eee;
-    font-size: 18px;
-    text-decoration: none;
-}
-
-
-@media screen and (max-width: 400px) {
-
-    body {
-        background-color: #4C336C;
+@media (max-width: 400px) {
+    .volume #on {
+        display: none;
+        visibility: hidden;
     }
 
-    .container {
-        border-radius:15px ;
-        background-color: #4C336C;
-        box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;
+    #onMobile {
+        display: block;
+        text-align: start;
+        font-size: 20px;
+        padding-left: 10px;
+        cursor: pointer;
+        width: 25px;
+    }
     
-    }
 }
+
+
+
+
+
+
 
