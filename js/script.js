@@ -1,265 +1,298 @@
-let btnPlay = document.querySelector('.playPause .play');
-let music = document.querySelector('audio')
-let nameMusic =document.querySelector('.nameMusic');
-let nameArtist =document.querySelector('.nameArtista');
-let imgMusic = document.querySelector('img');
-let prevBtn = document.querySelector('prev');
-let nextBtn = document.querySelector('.next');
+let imgTrack = document.querySelector('.imgTrack img')
+let nameTrack = document.querySelector('.textName')
+let nameArtistTrack = document.querySelector('.textArtist')
+let barProgressTrack = document.querySelector('.bar')
+let barProgressArea = document.querySelector('.barSlide')
+let btnRepeat = document.getElementById('repeatTrack');
+let btnPrevPlay = document.getElementById('prevTrack');
+let btnNextPlay = document.getElementById('nextTrack');
+let btnPlayPause = document.getElementById('playPause');
+let btnListTrack = document.getElementById('listTrack');
+let menuList =  document.querySelector('.listTrackMusic');
+let fecharMenu = document.querySelector('.fecharMenu');
+let recent_volume = document.querySelector('#volumeTrack')
 
-let openCloseListColor = document.querySelector('.buttonColorBackground');
-let openCloseListColor2 = document.querySelector('.buttonColorBackground2');
-let container = document.querySelector('.container')
-let openCloseLista = document.querySelector('.listMusic')
-let barraTime = document.querySelector('.barra') 
-let barraProgress = document.querySelector('.timeProgress')
-let fecharMenu = document.querySelector('.fechaMenu');
-let repeatBtn = document.querySelector('.repeat')
-let containerSeconds = document.querySelector('.containerSec');
-let containerLogin = document.querySelector('.containerLogin');
+let track = document.querySelector('audio');
 
-let indexMusic = 0
+let indexList = Math.floor((Math.random() * arrayFaixas.length) + 1);
 
-document.addEventListener('mousedown', (event) => {
-    if(clickFora.contains(event.target)) {
-    }
+window.addEventListener('load', ()=>{
+    loadingList(indexList);
+    playingMusic();
+
 })
 
-window.addEventListener('load', ()=> {
-    carregarIndex(indexMusic);
+function loadingList(numIndex){
+    imgTrack.src = `assets/img/${arrayFaixas[numIndex].img}.jpg`
+    track.src = `assets/music/${arrayFaixas[numIndex].src}.mp3`
+    nameTrack.innerHTML = arrayFaixas[numIndex].name;
+    nameArtistTrack.innerHTML = arrayFaixas[numIndex].artista;
+}
+
+function playPause(){
+    if(track.paused){
+        track.play();
+        btnPlayPause.textContent = 'pause'
+    } else {
+        track.pause();
+        btnPlayPause.textContent = 'play_circle_filled'
+    }
+}
+
+function prevTrack(){
+    indexList--;
+    if(indexList < 0){
+        indexList = 6;
+    }
+    loadingList(indexList);
+    playingMusic();
+    track.play();
+    btnPlayPause.textContent = 'pause';
+};
+
+function nextTrack(){
+    indexList++;
+    if(indexList > 6){
+        indexList = 0;
+    }
+    loadingList(indexList);
+    playingMusic();
+    track.play();
+    btnPlayPause.textContent = 'pause';
+};
+
+
+
+track.addEventListener('timeupdate', (e)=>{
+    const currentTime = e.target.currentTime; 
+    const duration = e.target.duration;
+    let progressWidth = (currentTime / duration) * 100;
+    barProgressTrack.style.width = `${progressWidth}%`;
+
+    barProgressTrack.style.width = `${progressWidth}%`;
+    let currentTimeTrack = document.querySelector('.currentTime')
+    let durationTrack = document.querySelector('.duration')
+    track.addEventListener('loadeddata', ()=>{
+        let trackAudioDuration = track.duration;
+        let totalMin = Math.floor(trackAudioDuration / 60);
+        let totalSec = Math.floor(trackAudioDuration % 60);
+        if(totalSec < 10){
+            totalSec = '0' + totalSec;
+        }
+        durationTrack.innerHTML = `${totalMin}:${totalSec}`;
+    });
+    let currentMin = Math.floor(track.currentTime / 60);
+    let currentSec = Math.floor(track.currentTime % 60);
+    if(currentSec < 10){
+        currentSec = `0${currentSec}`;
+    }
+    currentTimeTrack.innerText = `${currentMin}:${currentSec}`;
 })
 
-function carregarIndex(numbIndex) {
-    nameMusic.innerHTML = arrayFaixas[numbIndex].name;
-    nameArtist.innerHTML = arrayFaixas[numbIndex].artista;
-    music.src = `/../assets/music/${arrayFaixas[numbIndex].src}.mp3`;
-}
+barProgressArea.addEventListener('click', (e)=>{
+    let widthProgress = barProgressArea.clientWidth;
+    let offsetWidth = e.offsetX;
+    let durationAudio = track.duration;
+
+    track.currentTime = (offsetWidth / widthProgress) * durationAudio;
+    track.play();
+    btnPlayPause.innerHTML = 'pause'
+});
 
 
-function playMusic() {
+const ulTag = document.querySelector("ul");
+for (let g = 0; g < arrayFaixas.length; g++) {
+  let liTag = `<li li-index="${g}">
+  <div class="textInfo">
+    <p class="textTrackMusic">${arrayFaixas[g].name}</p>
+    <p class="textArtistMusic">${arrayFaixas[g].artista}</p>
+  </div>
+  <span class="material-icons listTrack2" onclick="listTrack()">play_arrow</span>
+  <div class="textPlay">
+    <span id="${arrayFaixas[g].src}"></span>
+    <audio id="test" class="${arrayFaixas[g].src}" src="assets/music/${arrayFaixas[g].src}.mp3"></audio>
+  </div>
 
-   if(music.paused) {
-       music.play();
-       btnPlay.innerHTML = 'pause'
+</li>`;
+  ulTag.insertAdjacentHTML("beforeend", liTag); 
 
-   } else {
-       music.pause()
-       btnPlay.innerHTML = 'play_arrow'
-   }
-}
-
-function playMusicList() {
-
-    if(music.paused) {
-        music.play();
-        btnPlay.innerHTML = 'pause'
-    }
- }
-
-
-
-
-function prevMusic() {
-    indexMusic--;
-    if(indexMusic < 0){
-        indexMusic = 21
-    }
-    carregarIndex(indexMusic);
-    if (music.paused) {
-        music.play();
-        btnPlay.innerHTML = 'pause'
-    }
-}
-
-function nextMusic() {
-    indexMusic++;
-    if(indexMusic > 21){
-        indexMusic = 0
-    }
-    carregarIndex(indexMusic);
-    if (music.paused) {
-        music.play();
-        btnPlay.innerHTML = 'pause'
-    }    
-}
-
-music.addEventListener('timeupdate', (e) => {
-    const durationAudio = e.target.currentTime;
-    const secAudio = e.target.duration;
-    let resulTimeAudio = (durationAudio / secAudio) * 100;
-    barraTime.style.width = resulTimeAudio + '%';
-
-    let timeFinal = document.querySelector('.fim');
-    let timeInitial = document.querySelector('.inicio'); 
-    let timeFinaList = document.querySelector('.timeTextTime')
-
-    music.addEventListener('loadeddata', () => {
-        let durationReal = music.duration;
-        let totalMin = Math.floor(durationReal / 60);
-        let totalSeconds = Math.floor(durationReal % 60);
-        if(totalSeconds < 10) {
-            totalSeconds = '0' + totalSeconds;
-        }
-        
-        timeFinal.innerHTML = totalMin + ':' + totalSeconds;
-    
-    });
-        let minCurrent = Math.floor(durationAudio /60);
-        let secCurrent = Math.floor(durationAudio % 60);
-        if(secCurrent < 10) {
-            secCurrent = '0' + secCurrent;
-        }
-        timeInitial.innerHTML = minCurrent + ':' + secCurrent;
-    });
-
-
-    barraProgress.addEventListener('click', (e)=>{
-        let widthProgress = barraProgress.clientWidth;
-        let offsetXClick = e.offsetX;
-        let durationAudio = music.duration;
-        
-        music.currentTime = (offsetXClick / widthProgress) * durationAudio;
-        playMusicList();
-    })  
-    
-    function repeatMusic() {
-        let mudarTextRepeat = repeatBtn.innerText;
-    
-        switch(mudarTextRepeat){
-            case 'repeat':
-                repeatBtn.innerText = 'repeat_one';
-                repeatBtn.setAttribute('title', 'Audio Looped')
-                break;
-            case 'repeat_one':
-                repeatBtn.innerText = 'shuffle';
-                repeatBtn.setAttribute('title', 'Playback shuffle')
-                break;
-            case 'shuffle':
-                repeatBtn.innerText = 'repeat';
-                repeatBtn.setAttribute('title', 'Playback Looped');
-                break;
-    }
+  let liAudioDuartionTag = ulTag.querySelector(`#${arrayFaixas[g].src}`);
+  let liAudioTag = ulTag.querySelector(`.${arrayFaixas[g].src}`);
+  liAudioTag.addEventListener("loadeddata", ()=>{
+    let duration = liAudioTag.duration;
+    let totalMin = Math.floor(duration / 60);
+    let totalSec = Math.floor(duration % 60);
+    if(totalSec < 10){ 
+      totalSec = `0${totalSec}`;
     };
-
-    music.addEventListener('ended', ()=>{
-        let mudarTextRepeat = repeatBtn.innerText;
-    
-        switch(mudarTextRepeat){
-            case 'repeat':
-                nextMusic();
-                break;
-            case 'repeat_one':
-                music.currentTime = 0;
-                carregarIndex(indexMusic);
-                playMusic();
-                break;
-            case 'shuffle':
-                let aleatorioIndex = Math.floor((Math.random()* arrayFaixas.length) + 1);
-                do{
-                    aleatorioIndex = Math.floor((Math.random()* arrayFaixas.length) + 1);
-                }while (indexMusic == aleatorioIndex); 
-                indexMusic = aleatorioIndex;
-                carregarIndex(indexMusic);
-                playMusic();
-                break;
-        }
-    })
-
-    const ulTag = document.querySelector('.containerList ul');
-
-    for (let i = 0; i<arrayFaixas.length; i++) {
-        ulTag.innerHTML += `<li class="numeroFaixa" onclick="playMusicList()">
-        <div class="text">
-            <p class="">${arrayFaixas[i].name}</p>
-            <p class="">${arrayFaixas[i].artista}</p>
-        </div>
-        <audio id="durationAudio" src="asstes/music/${arrayFaixas[i].src}" ></audio>
-        <span class="durationText">1:45</span>
-    </li>`
-
-    let textTimeList = document.querySelector('#durationAudio');
-    let audioTimeList = document.querySelector('.durationText')
-
-    
-    audioTimeList.addEventListener('loadeddata', ()=>{
-        let duration = audioTimeList.duration;
-        let totalMin = Math.floor(duration / 60);
-        let totalSec = Math.floor(duration % 60);
-        if(totalSec < 10){ 
-        totalSec = '0' + totalSec;
-        };
-        textTimeList.innerText = totalMin + ':' + totalSec
+    liAudioDuartionTag.innerText = `${totalMin}:${totalSec}`; 
   });
-                                                        
+}
+function playingMusic(){
+    const allLiTag = ulTag.querySelectorAll("li");
+    
+    for (let j = 0; j < allLiTag.length; j++) {
+      let audioTag = allLiTag[j].querySelector(".listTrack2");
+      
+      if(allLiTag[j].classList.contains("playing")){
+        allLiTag[j].classList.remove("playing");
+        audioTag.innerText = "play_arrow";
+
+      }
+      if(allLiTag[j].getAttribute("li-index") == indexList){
+        allLiTag[j].classList.add("playing");
+        audioTag.innerText = "pause";
+      }
+  
+      allLiTag[j].setAttribute("onclick", "clicked(this)");
+    }
+  }
+
+function clicked(element){
+    let getIndexLi = element.getAttribute('li-index');
+    indexList = getIndexLi;
+    loadingList(indexList);
+    playPause();
+    playingMusic();
+};
+
+function repeatTrack(){
+    let repeatSwitch = btnRepeat.textContent;
+        switch(repeatSwitch){
+            case'repeat':
+            btnRepeat.textContent = 'repeat_one';
+            break;
+            case'repeat_one':
+            btnRepeat.textContent = 'shuffle';
+            break;
+            case'shuffle':
+            btnRepeat.textContent = 'repeat';
+            break;
+        }
+};
+
+
+track.addEventListener('ended', ()=>{
+    let repeatSwitch = btnRepeat.textContent;
+    switch(repeatSwitch){
+        case'repeat':
+            nextTrack();
+            break;
+        case'repeat_one':
+            track.currentTime = 0;
+            track.play();
+            break;
+        case'shuffle':
+            let aleatorioIndex = Math.floor((Math.random()* arrayFaixas.length) + 1);
+            do{
+                aleatorioIndex = Math.floor((Math.random()* arrayFaixas.length) + 1);
+            }while (indexList == aleatorioIndex); 
+            indexList = aleatorioIndex;
+            loadingList(indexList);
+            playingMusic();
+            track.play();
+            break;
+    }
+});
+
+function listTrack(){
+    menuList.style = 
+    'opacity: 1;' +
+    'display: block;' +
+    'bottom: 0;' +
+    'pointer-events: auto;'
+    fecharMenu.style = 
+    'z-index: 1;'
 }
 
+function closeList() {
+    menuList.style = 
+    'bottom: -55%;' 
+    fecharMenu.style =
+    'z-index: -1;'
 
+}
 
+fecharMenu.addEventListener('click', fecharList)
 
-
-function fecharMenuDvi() {
+function fecharList() {
     closeList();
-    closeListColor();
-   fecharMenu.style = 
-   'z-index: -5555;'
+    closeColor();
 }
 
-function fecharMenuDvi2() {
-    closeListColor();
-    closeList();
-   fecharMenu.style = 
-   'z-index: -5555;'
-}
 
-function clickList () {
-    openCloseLista.style.bottom = '0px';
-    openCloseLista.style.opacity ='1';
+function colorBackground(){
+    let barraColor = document.querySelector('.contCores');
+    barraColor.style =
+        'right: 0;'
         fecharMenu.style = 
-        'z-index: 0;'
- }
+        'z-index: 1;'
+}
 
- function closeList () {
-    openCloseLista.style.bottom = '-55%';
-    openCloseLista.style.opacity ='0';
- }
-
-function closeListColor() {
-        openCloseListColor.style.top = '-55%'
+function closeColor() {
+    let barraColor = document.querySelector('.contCores');
+    barraColor.style =
+        'right: -100%;'
 
     
 }
 
-function mudarColor () {
-    openCloseListColor.style.top = '0'
-    fecharMenu.style = 
-    'z-index: 0;'    
-}
-
-function color1() {
-    container.style = 
-        'background-color: #4C336C;'
-        'box-shadow: 0px 6px 15px rgb(0,0,0,0.342) ;'
-}
-function color2() {
-    container.style = 
-    'background-color: #0e9fff;' +
-    'box-shadow: 0px 6px 15px rgb(0,0,0,0.342);'
-}
-function color3() {
-    container.style = 
-        'background: linear-gradient(#9ce3ff 0%, #fd878d 90%);' +
-        'box-shadow: 0px 6px 15px rgb(0,0,0,0.342);'
-}
-function color4() {
-    container.style = 
-        'background-color: #000;' +
-        'box-shadow: 0px 6px 15px rgb(0,0,0,0.342);'
-}
+function btnBackground(){
+    let containerBackground = document.querySelector('.container');
+    containerBackground.style = 
+    'background-image: linear-gradient(180deg, #5c3f64 0, #4a2f5e 25%, #321f59 50%, #0a1254 75%, #000550 100%);'
+    menuList.style = 
+    'background-image: radial-gradient(circle at 50% -20.71%, #de9c2c 0, #e5922a 8.33%, #ea852b 16.67%, #ee772d 25%, #f16731 33.33%, #f35436 41.67%, #f23c3c 50%, #f01843 58.33%, #ed004c 66.67%, #e90057 75%, #e30064 83.33%, #db0071 91.67%, #d10080 100%);';
+};
+function btnBackgroundOrig(){
+    let containerBackground = document.querySelector('.container');
+    containerBackground.style = 
+    'background-image: radial-gradient(circle at 50% -20.71%, #de9c2c 0, #e5922a 8.33%, #ea852b 16.67%, #ee772d 25%, #f16731 33.33%, #f35436 41.67%, #f23c3c 50%, #f01843 58.33%, #ed004c 66.67%, #e90057 75%, #e30064 83.33%, #db0071 91.67%, #d10080 100%);';
+    menuList.style = 
+    'background-image: radial-gradient(circle at 50% -20.71%, #de9c2c 0, #e5922a 8.33%, #ea852b 16.67%, #ee772d 25%, #f16731 33.33%, #f35436 41.67%, #f23c3c 50%, #f01843 58.33%, #ed004c 66.67%, #e90057 75%, #e30064 83.33%, #db0071 91.67%, #d10080 100%);';
+};
 
 
+function volumeChange(){
+    track.volume = recent_volume.value / 100;
+}
+
+function muteTrack(){
+
+    if(track.muted){
+        track.muted = false
+        btnOn.innerHTML ='volume_up'
+        btnOnMobile.innerHTML ='volume_up'
+        btnOn.style.color = '#eee'
+        btnOnMobile.style.color = '#eee'
+    }else {
+        track.muted = true
+        btnOn.innerHTML ='volume_off'
+        btnOnMobile.innerHTML ='volume_off'
+        btnOn.style.color = 'orange'
+        btnOnMobile.style.color = 'orange'
+    }
+}
+
+let recentVolume = document.querySelector('#volumeTrack')
+let btnOn = document.querySelector('#on')
+let btnOnMobile = document.querySelector('#onMobile')
 
 
-function logarPage()  {
-    containerLogin.style.display = 'none'
-    containerSeconds.style.display ='block'
-    document.querySelector('.topoTela i').style.display = block
+function abrirVolume(){
+    abrirVolume2();
+}
+function abrirVolume2(){
+    recentVolume.style = 
+    'opacity: 1;' +
+    'display: block;'
+}
+function fecharVolume2(){
+    recentVolume.style = 
+    'opacity: 0;'
+}
+
+function fecharTrack(){
+    fecharVolume2();
+    
 }
