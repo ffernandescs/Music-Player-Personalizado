@@ -23,7 +23,6 @@ window.addEventListener('load', ()=>{
 })
 
 function loadingList(numIndex){
-    imgTrack.src = `assets/img/${arrayFaixas[numIndex].img}.jpg`
     track.src = `assets/music/${arrayFaixas[numIndex].src}.mp3`
     nameTrack.innerHTML = arrayFaixas[numIndex].name;
     nameArtistTrack.innerHTML = arrayFaixas[numIndex].artista;
