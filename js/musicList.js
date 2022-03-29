@@ -1,13 +1,13 @@
 let arrayFaixas = [
     {
         name: '01 - Quando Deus criou voce',
-        artista: '01',
+        artista: 'Banda Ellos',
         src: '01'
 
     },
     {
         name: '02 - Só Você',
-        artista: '02',
+        artista: 'Banda Ellos',
         src: '02'
 
     },
