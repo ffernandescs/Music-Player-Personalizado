@@ -1,133 +1,133 @@
 let arrayFaixas = [
     {
-        name: 'Quando Deus criou voce',
-        artista: 'Cover',
+        name: '01 - Quando Deus criou voce',
+        artista: '01',
         src: '01'
 
     },
     {
-        name: 'Só Você',
-        artista: 'Cover',
+        name: '02 - Só Você',
+        artista: '02',
         src: '02'
 
     },
     {
-        name: 'Um verso de amor',
-        artista: 'Cover',
+        name: '03 - Um verso de amor',
+        artista: 'Banda Ellos',
         src: '03'
 
     },
     {
-        name: 'Escrevi',
-        artista: 'Cover',
+        name: '04 - Escrevi',
+        artista: 'Banda Ellos',
         src: '04'
 
     },
     {
-        name: 'Amor Verdadeiro',
-        artista: 'Cover',
+        name: '05 - Amor Verdadeiro',
+        artista: 'Banda Ellos',
         src: '05'
 
     },
     {
-        name: 'Dia do Casamento',
-        artista: 'Cover',
+        name: '06 - Dia do Casamento',
+        artista: 'Banda Ellos',
         src: '06'
 
     },
     {
-        name: 'Pensando em Você',
-        artista: 'Cover',
+        name: '07 - Pensando em Você',
+        artista: 'Banda Ellos',
         src: '07'
 
     },
     {
-        name: 'Você me conquistou',
-        artista: 'Cover',
+        name: '08 - Você me conquistou',
+        artista: 'Banda Ellos',
         src: '08'
 
     },
     {
-        name: 'Trabalhai e Orai',
-        artista: 'Cover',
+        name: '09 - Trabalhai e Orai',
+        artista: 'Banda Ellos',
         src: '09'
 
     },
     {
-        name: 'Alma abatida',
-        artista: 'Cover',
+        name: '10 - Alma abatida',
+        artista: 'Banda Ellos',
         src: '10'
 
     },
     {
-        name: 'Ousado Amor',
-        artista: 'Cover',
+        name: '11 - Ousado Amor',
+        artista: 'Banda Ellos',
         src: '11'
 
     },
     {
-        name: 'Não há Limites',
-        artista: 'Cover',
+        name: '12 - Não há Limites',
+        artista: 'Banda Ellos',
         src: '12'
 
     },
     {
-        name: 'Os anjos te Louvam',
+        name: '13 - Os anjos te Louvam',
         artista: 'Eli Soares',
         src: '13'
 
     },
     {
-        name: 'Videira',
-        artista: 'Cover',
+        name: '14 - Videira',
+        artista: 'Banda Ellos',
         src: '14'
 
     },
     {
-        name: 'Lá vem Faraó',
-        artista: 'Cover',
+        name: '15 - Lá vem Faraó',
+        artista: 'Banda Ellos',
         src: '15'
 
     },
     {
-        name: 'Aos pés da Cruz',
+        name: '16 - Aos pés da Cruz',
         artista: 'Eli Soares',
         src: '16'
 
     },
     {
-        name: 'Amar Você',
-        artista: 'Cover',
+        name: '17 - Amar Você',
+        artista: 'Banda Ellos',
         src: '17'
 
     },
     {
-        name: 'Lágrimas no Olhar',
-        artista: 'Cover',
+        name: '18 - Lágrimas no Olhar',
+        artista: 'Banda Ellos',
         src: '18'
 
     },
     {
-        name: 'Por Amor-O Dom De Amar-Tudo Vem De Você',
+        name: '19 - Por Amor-O Dom De Amar-Tudo Vem De Você',
         artista: 'Catedral',
         src: '19'
 
     },
     {
-        name: 'O tempo não pode apagar',
+        name: '20 - O tempo não pode apagar',
         artista: 'Cassiane',
         src: '20'
 
     },
     {
         name: 'Te amaria outra vez',
-        artista: 'Cover',
+        artista: 'Banda Ellos',
         src: '21'
 
     },
     {
         name: 'Sempre te amarei',
-        artista: 'Cover',
+        artista: 'Banda Ellos',
         src: '22'
 
     },
